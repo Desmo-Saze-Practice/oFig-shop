@@ -1,0 +1,103 @@
+<%- include('partials/header') %> 
+
+
+  <!-- Page Content -->
+  <div class="container container-main">
+
+      <div class="row">
+        <div class="col">
+          <h3 class="text-center">Votre Panier</h3>
+            <% if ( locals.cart && cart.length>0 ) { %> 
+          <table class="table">
+            <thead>
+              <th>figurine</th>
+              <th>Quantité</th>
+              <th>Prix HT</th>
+            </thead>
+            <tbody>
+              <% cart.forEach(article => { %>
+              <tr>
+                <td>
+                  <img class="img-thumbnail img-cart-list" src="/images/<%= article.name.toLowerCase() %>.png" alt="">
+                  <div class="figurine-description">
+                      <h5 class="figurine-title"><%= article.name %></h5>
+                      <p class="figurine-prize">$<%= article.price %></p>
+                  </div>
+                </td>
+
+                <td>
+                  <strong><%= article.quantity %></strong>
+                  <a href="/cart/add/<%=article.id%>">+</a> / <a href="#">-</a>
+                </td>
+
+                <td>
+                  <p class="figurine-subtotal">$<%=article.subtotal%></p>
+                </td>
+              </tr>
+              <% }) %> 
+
+
+
+              <!-- Frais de port -->
+              <tr>
+                <td class="text-right" colspan="2">
+                  Frais de port
+                </td>
+                <td class="figurine-subtotal">
+                  $<%= details.shipping %> 
+                </td>
+              </tr>
+
+              <tfoot>
+                <tr>
+                  <td class="text-right" colspan="2">
+                    Total HT
+                  </td>
+                  <td class="figurine-subtotal">
+                    $<%= details.totalTF %> 
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="text-right" colspan="2">
+                    TVA <%= details.vat * 100 %> 
+                  </td>
+                  <td class="figurine-subtotal">
+                    $<%= details.vatAmount %> 
+                  </td>
+                </tr>
+
+                <tr class="row-total">
+                  <td class="text-right" colspan="2">
+                    Total TTC
+                  </td>
+                  <td class="figurine-total">
+                    $<%= details.total %> 
+                  </td>
+                </tr>
+
+              </tfoot>
+
+            </tbody>
+
+          </table>
+          
+          
+          <div class="row">
+            <div class="col text-right">
+              <div class="btn btn-success">
+                Passer Commande
+              </div>
+            </div>
+          </div>
+          <% } else { %>      
+            
+            <h3>Aucune figurine dans votre panier</h3>
+            
+            <% } %> 
+        </div>
+      </div>
+    </div>
+    
+
+  <%- include('partials/footer') %> 

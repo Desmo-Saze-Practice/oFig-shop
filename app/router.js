@@ -7,14 +7,18 @@ const cartController = require('./controllers/cartController');
 
 const router = express.Router();
 
-// page d'accueil
+// accueil
 router.get('/', mainController.homePage);
 
-// page article
-router.get('/article', mainController.articlePage);
+// article
+router.get('/article/:id', mainController.itemPage);
 
-// page panier
+// panier
+router.get('/cart/add/:id', cartController.addItem);
 router.get('/cart', cartController.cartPage);
+
+// 404
+router.use(mainController.error404);
 
 
 // on exporte le router 

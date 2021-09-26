@@ -1,0 +1,30 @@
+{
+  "name": "oFig-shop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Desmo-Saze-Practice/oFig-shop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Desmo-Saze-Practice/oFig-shop/issues"
+  },
+  "homepage": "https://github.com/Desmo-Saze-Practice/oFig-shop#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "epress": "0.0.1-security",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "global": "^4.4.0",
+    "nodemon": "^2.0.13",
+    "pg": "^8.7.1"
+  }
+}

@@ -14,6 +14,22 @@ const app = express();
 
 // servir les fichiers statiques qui sont dans "integration"
 app.use(express.static('integration'));
+app.set("view engine", "ejs");
+app.set('views', __dirname + "/app/views");
+
+// Pour le panier : session
+const session = require('express-session');
+app.use(session({
+  secret: 'somepassdude',
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    //pas https donc false
+    secure: false,
+    maxAge: (1000 * 60 * 60)
+  }
+}));
+
 
 // routage !
 app.use(router);
@@ -21,5 +37,5 @@ app.use(router);
 
 // on lance le serveur
 app.listen(PORT, () => {
-  console.log(`Listening on ${PORT}`);
+  console.log(`Listening on http://localhost:${PORT}`);
 });
