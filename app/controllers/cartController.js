@@ -22,10 +22,10 @@ const cartController = {
       });
 
       // TVA
-      details.vatAmount = details.totalTF + (details.totalTF * details.vat);
+      details.vatAmount = details.totalTF * details.vat;
 
       // TTC
-      details.total = details.totalTF + details.vatAmount;
+      details.total = details.totalTF + details.vatAmount + details.shipping;
 
       res.render('panier', {
         cart,
@@ -58,6 +58,15 @@ const cartController = {
 
       dataMapper.getOneItem(id, (error, item) => {
 
+        if (error) {
+          res.render('message', { message: 'Une erreur est survenue, veuillez réessayer ulterieurement'});
+          return;
+        }
+        if (!item) {
+          next();
+          return;
+        }
+
         item.quantity = 1;
         cart.push(item);
         res.redirect('/cart');
@@ -69,6 +78,31 @@ const cartController = {
       res.redirect('/cart');
       // res.redirect('panier');
     }
+  },
+
+  cardDelete: (req, res, next) => {
+
+    const id = Number(req.params.id);
+
+    const cart = req.session.cart;
+
+    const itemInCart = cart.find( item => {
+      console.log('item id ', item.id, ' id ', id);
+      return item.id === id
+    });
+
+    if (itemInCart) {
+      
+      itemInCart.quantity--;
+      
+      // avec filter, probleme: cela créer un nouveau tableau
+      req.session.cart = req.session.cart.filter(item => item.quantity > 0);
+
+      res.redirect('/cart');
+    } else {
+      next();
+    }
+
   }
 };
 

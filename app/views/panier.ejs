@@ -27,11 +27,11 @@
 
                 <td>
                   <strong><%= article.quantity %></strong>
-                  <a href="/cart/add/<%=article.id%>">+</a> / <a href="#">-</a>
+                  <a href="/cart/add/<%=article.id%>">+</a> / <a href="/cart/delete/<%=article.id%>">-</a>
                 </td>
 
                 <td>
-                  <p class="figurine-subtotal">$<%=article.subtotal%></p>
+                  <p class="figurine-subtotal text-right">$<%=article.subtotal.toFixed(2)%></p>
                 </td>
               </tr>
               <% }) %> 
@@ -43,8 +43,8 @@
                 <td class="text-right" colspan="2">
                   Frais de port
                 </td>
-                <td class="figurine-subtotal">
-                  $<%= details.shipping %> 
+                <td class="figurine-subtotal text-right">
+                  $<%= details.shipping.toFixed(2) %> 
                 </td>
               </tr>
 
@@ -53,17 +53,17 @@
                   <td class="text-right" colspan="2">
                     Total HT
                   </td>
-                  <td class="figurine-subtotal">
-                    $<%= details.totalTF %> 
+                  <td class="figurine-subtotal text-right">
+                    $<%= details.totalTF.toFixed(2) %> 
                   </td>
                 </tr>
 
                 <tr>
                   <td class="text-right" colspan="2">
-                    TVA <%= details.vat * 100 %> 
+                    TVA <%= (details.vat * 100) %>% 
                   </td>
-                  <td class="figurine-subtotal">
-                    $<%= details.vatAmount %> 
+                  <td class="figurine-subtotal text-right">
+                    $<%= details.vatAmount.toFixed(2) %> 
                   </td>
                 </tr>
 
@@ -71,8 +71,8 @@
                   <td class="text-right" colspan="2">
                     Total TTC
                   </td>
-                  <td class="figurine-total">
-                    $<%= details.total %> 
+                  <td class="figurine-total text-right">
+                    $<%= details.total.toFixed(2) %> 
                   </td>
                 </tr>
 

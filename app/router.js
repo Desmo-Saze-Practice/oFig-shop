@@ -16,6 +16,7 @@ router.get('/article/:id', mainController.itemPage);
 // panier
 router.get('/cart/add/:id', cartController.addItem);
 router.get('/cart', cartController.cartPage);
+router.get('/cart/delete/:id', cartController.cardDelete);
 
 // 404
 router.use(mainController.error404);
