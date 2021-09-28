@@ -6,7 +6,7 @@ const cartController = {
   cartPage: (req, res) => {
 
     const cart = req.session.cart;
-
+console.log(req.session, cart);
     if (cart) {
 
       const details = {
@@ -45,19 +45,21 @@ const cartController = {
 
     // on stock l'objet récupéré dans une variable
     const cart = req.session.cart;
-
+    
     // l'id provenant de l'url
     const id = Number(req.params.id);
-
+    console.log('our nice id', id);
+    console.log('session : ', req.session);
     const foundItem = cart.find(item => {
-      console.log('item id ', item.id, ' id ', id);
-      return item.id === id
+      return item.itemid === id
     });
-
+    
+    console.log('last bug');
     if (!foundItem) {
 
       dataMapper.getOneItem(id, (error, item) => {
-
+        console.log('my item');
+        console.log('this is data from mapper ', item);
         if (error) {
           res.render('message', { message: 'Une erreur est survenue, veuillez réessayer ulterieurement'});
           return;
@@ -74,6 +76,7 @@ const cartController = {
       });
     }
     else {
+      console.log('this is our found item from cart controller ', foundItem);
       foundItem.quantity++;
       res.redirect('/cart');
       // res.redirect('panier');
@@ -87,8 +90,7 @@ const cartController = {
     const cart = req.session.cart;
 
     const itemInCart = cart.find( item => {
-      console.log('item id ', item.id, ' id ', id);
-      return item.id === id
+      return item.itemid === id
     });
 
     if (itemInCart) {

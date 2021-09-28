@@ -18,15 +18,16 @@ const mainController = {
 
     const id = Number(req.params.id);
 
-    dataMapper.getOneItem(id, (error, article) => {
+    dataMapper.getOneItemReview(id, (error, item) => {
       if (error) {
         res.redner('message', {message: 'something went wrong'})
       }
-      if (!article) {
+      if (!item) {
         next();
         return;
       }
-      res.render('article', { article });
+      console.log();
+      res.render('article', { item });
     })
   },
 

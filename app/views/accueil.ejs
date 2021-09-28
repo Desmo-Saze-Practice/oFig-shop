@@ -9,20 +9,20 @@
 
     <div class="col-lg-4 col-md-6 mb-4">
       <div class="card h-100">
-        <a href="/article/<%= figurine.id %>">
+        <a href="/article/<%= figurine.itemid %>">
           <img class="card-img-top" src="./images/<%= figurine.name %>.png" alt="">
           <div class="badge-category badge badge-pill badge-<%= figurine.category.toLowerCase() %>"><%= figurine.category %></div>
         </a>
         <div class="card-body">
           <h4 class="card-title">
-            <a href="/article/<%= figurine.id %>"><%= figurine.name %></a>
+            <a href="/article/<%= figurine.itemid %>"><%= figurine.name %></a>
           </h4>
           <h5>$<%= figurine.price %></h5>
           <p class="card-text"><%= figurine.description %></p>
         </div>
         <div class="card-footer">
           <small class="text-muted">★ ★ ★ ★ ☆</small>
-          <a href="/cart/add/<%= figurine.id %>" class="link-add-cart">+ Ajouter au panier</a>
+          <a href="/cart/add/<%= figurine.itemid %>" class="link-add-cart">+ Ajouter au panier</a>
         </div>
       </div>
     </div>

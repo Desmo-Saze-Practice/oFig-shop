@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col">
           <h3 class="text-center">Votre Panier</h3>
-            <% if ( locals.cart && cart.length>0 ) { %> 
+            <% if ( locals.cart && cart.length > 0 ) { %> 
           <table class="table">
             <thead>
               <th>figurine</th>
@@ -27,7 +27,7 @@
 
                 <td>
                   <strong><%= article.quantity %></strong>
-                  <a href="/cart/add/<%=article.id%>">+</a> / <a href="/cart/delete/<%=article.id%>">-</a>
+                  <a href="/cart/add/<%=article.itemid%>">+</a> / <a href="/cart/delete/<%=article.itemid%>">-</a>
                 </td>
 
                 <td>

@@ -7,6 +7,11 @@ const cartController = require('./controllers/cartController');
 
 const router = express.Router();
 
+// test
+router.get('/test', (req, res) => {
+    res.sendFile(__dirname + '/views/old/article.html');
+});
+
 // accueil
 router.get('/', mainController.homePage);
 

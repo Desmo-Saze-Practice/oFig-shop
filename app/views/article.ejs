@@ -1,33 +1,38 @@
 <%- include('partials/header') %> 
 <%- include('partials/leftNav') %> 
 
-<% console.log( locals.article ) %> 
-
-<% if(locals.article) { %> 
+<% if(locals.item) { %> 
 <div class="col-lg-9">
   
   <div class="row">
     <div class="col-lg-6">
-      <img class="" src="/images/<%= article.name.toLowerCase() %>.png" alt="">
+      <img class="" src="/images/<%= item.name.toLowerCase() %>.png" alt="">
     </div>
     
       <div class="col-lg-6">
         <div class="card">
           <div class="card-body">
               <h3 class="card-title">
-                <%= article.name %>
-                <div class="badge badge-pill badge-<%= article.category.toLowerCase() %>"><%= article.category %></div>
+                <%= item.name %>
+                <div class="badge badge-pill badge-<%= item.category.toLowerCase() %>"><%= item.category %></div>
               </h3>
-              <p class="card-text">Taille réelle : <%= article.size %>cm</p>
-              <p class="card-text"><%= article.description %></p>
+              <p class="card-text">Taille réelle : <%= item.size %>cm</p>
+              <p class="card-text"><%= item.description %></p>
+              <% if (item.reviews) %> 
               <p class="card-text">
-                Note moyenne : &#9733; &#9733; &#9733; &#9733; &#9734;
+                Note moyenne : 
+                  &#9733; 
+                  &#9733; 
+                  &#9733; 
+                  &#9733; 
+                  &#9734;
                 <br>
                 <a href="#" data-toggle="modal" data-target="#reviewsModal">Détails des avis</a>
               </p>
+              <% } %> 
               <h5>$24.99</h5>
               <p class="card-text">
-                <a href="/cart/add/<%= article.id %>" class="link-add-cart">+ Ajouter au panier</a>
+                <a href="/cart/add/<%= item.itemid %>" class="link-add-cart">+ Ajouter au panier</a>
               </p>
           </div>
         </div>
@@ -40,12 +45,14 @@
   </div>
   <!-- /.col-lg-9 -->
 
-  <% } else { %> 
 
-    <h3>No item found, please try again later</h3>
+<% if (item.reviews) { %> 
 
-    <% } %> 
+  <%- include('partials/modaleAvis') %> 
+
+<% } %> 
 
   <%- include('partials/footer') %> 
-  <%- include('partials/modaleAvis') %> 
+
+
 
