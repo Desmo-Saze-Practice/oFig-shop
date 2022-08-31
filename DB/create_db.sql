@@ -1,18 +1,18 @@
 -- Figurine
+-- CREATE DATABASE IF NOT EXISTS ofig;
+DROP TABLE IF EXISTS review;
+DROP TABLE IF EXISTS figurine;
 
-DROP TABLE IF EXISTS "review";
-DROP TABLE IF EXISTS "figurine";
-
-CREATE TABLE IF NOT EXISTS "figurine" (
-  "id" SERIAL PRIMARY KEY,
-  "name" TEXT,
-  "description" TEXT,
-  "size" REAL, -- REAL correspond à "nombre à virgule"
-  "price" REAL NOT NULL,
-  "category" TEXT
+CREATE TABLE figurine (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name TEXT,
+  description TEXT,
+  size REAL, -- REAL correspond à nombre à virgule
+  price REAL NOT NULL,
+  category TEXT
 );
 
-INSERT INTO "figurine"("id","name", "description", "size", "price", "category") VALUES
+INSERT INTO figurine(id,name, description, size, price, category) VALUES
 (1,'Aerith', 'Aerith Gainsborough est la dernière descendante des Cetras (ou Anciens), fille du professeur Gast et d''Ifalna',35,24.99,'Gentil'),
 (2,'Barret', 'Barret Wallaceest le chef d''AVALANCHE, groupe écologiste de résistance à l''épuisement des ressources planétaires (l''énergie Mako) par la Shinra.',30,24.99,'Gentil'),
 (3,'Cloud', 'Cloud Strife est le principal héros de Final Fantasy VII. Convaincu d''être un ancien SOLDAT, il est au début du jeu un mercenaire employé par AVALANCHE.',37,34.99,'Gentil'),
@@ -23,17 +23,17 @@ INSERT INTO "figurine"("id","name", "description", "size", "price", "category") 
 
 -- Review
 
-CREATE TABLE IF NOT EXISTS "review" (
-  "id" SERIAL PRIMARY KEY,
-  "author" TEXT NOT NULL,
-  "note" REAL NOT NULL,
-  "title" TEXT,
-  "message" TEXT,
-  "figurine_id" INT,
-  FOREIGN KEY("figurine_id") REFERENCES "figurine"("id")
+CREATE TABLE review (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  author TEXT NOT NULL,
+  note REAL NOT NULL,
+  title TEXT,
+  message TEXT,
+  figurine_id INT,
+  FOREIGN KEY(figurine_id) REFERENCES figurine(id)
 );
 
-INSERT INTO "review" ("id", "author", "note", "title", "message", "figurine_id") VALUES
+INSERT INTO review (id, author, note, title, message, figurine_id) VALUES
 (1,'Jean Claude Dus',4, 'Une belle figurine', 'La finition est bien, le rose est vraiment rose. Seul bémol, le livreur a abimé la main droite.' ,1),
 (2,'Thérèse de Monsou',2, 'Bof Bof...', 'La figurine ne tient pas debout seule. Certains détails sont mal finis, comme les bracelets.' ,1),
 (3,'Monsieur Preskovitch',5, 'Juste parfait', 'C''est tellement parfait, on dirait que c''est roulé à la main sous les aisselles.' ,1),
